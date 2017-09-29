@@ -176,7 +176,7 @@ public class HotBarManager {
 									veh.removeMetadata("kart.immune",
 											MarioKart.plugin);
 									player.getWorld().playSound(
-											player.getLocation(), Sound.CLICK,
+											player.getLocation(), Sound.UI_BUTTON_CLICK,
 											0.5f, 3f);
 								} catch (Exception e) {
 									// Player or vehicle are gone
@@ -184,7 +184,7 @@ public class HotBarManager {
 								return;
 							}
 						}, (long) (lengthMS * 0.020));
-				player.getWorld().playSound(player.getLocation(), Sound.DRINK,
+				player.getWorld().playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK,
 						0.5f, 3f);
 			}
 		}

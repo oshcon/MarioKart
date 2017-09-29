@@ -35,6 +35,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 public class ServerListener implements Listener {
@@ -81,7 +82,7 @@ public class ServerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	void interact(PlayerInteractEvent event){
 		Player player = event.getPlayer();
-		if(player.getItemInHand().getType().equals(Material.EGG)){
+		if(player.getInventory().getItemInHand().getType().equals(Material.EGG)){
 			event.setCancelled(true);
 			return;
 		}
@@ -139,7 +140,10 @@ public class ServerListener implements Listener {
 	@EventHandler
 	void useLobbyTP(PlayerInteractEvent event){
 		Player player = event.getPlayer();
-		ItemStack inHand = player.getItemInHand();
+		if (event.getHand() == EquipmentSlot.OFF_HAND) {
+			return;
+		}
+		ItemStack inHand = player.getInventory().getItemInMainHand();
 		if(!fsm.getStage().equals(ServerStage.WAITING)){
 			return;
 			

@@ -25,6 +25,7 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -59,6 +60,9 @@ public class PowerupManager {
 		// Start calculations
 		if (event instanceof PlayerInteractEvent) {
 			PlayerInteractEvent evt = (PlayerInteractEvent) event;
+			if (((PlayerInteractEvent) event).getHand() == EquipmentSlot.OFF_HAND) {
+				return;
+			}
 			if (!ucars.listener.inACar(evt.getPlayer())) {
 				return;
 			}

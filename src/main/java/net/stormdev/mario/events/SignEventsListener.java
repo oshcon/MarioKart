@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class SignEventsListener implements Listener {
@@ -22,6 +23,9 @@ public class SignEventsListener implements Listener {
 	
 	@EventHandler
 	void signClicker(final PlayerInteractEvent event) { //Handle people clicking on signs
+		if (event.getHand() == EquipmentSlot.OFF_HAND) {
+			return;
+		}
 		MarioKart.powerupManager.calculate(event.getPlayer(), event);
 		if(MarioKart.fullServer){
 			return;
